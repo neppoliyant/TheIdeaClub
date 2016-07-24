@@ -1,6 +1,6 @@
 # TheIdeaClub
 
-Requirements:
+Techonolgy Stack:
 -------------
 1. Node
 2. NPM
@@ -49,7 +49,7 @@ Api Details
 
 Functionality : Users
 ---------------------
-
+```sh
 API: Login
 Method: PUT
 URL : http:localhost:3000/rest/ideaClub/user/test@gmail.com
@@ -86,9 +86,11 @@ Method: Delete
 URL : http:localhost:3000/rest/ideaClub/user/cd00ebc1-5197-11e6-a505-27caa3483c4b(uid)
 PL : nil
 
+```
+
 Functionality : Notification
 ----------------------------
-
+```sh
 API: Subscription
 Method: Get
 URL : http:localhost:3000/rest/ideaClub/subscription/:id(device token)/cd00ebc1-5197-11e6-a505-27caa3483c4b(:uid)
@@ -110,5 +112,5 @@ Method: DELETE
 URL : http:localhost:3000/rest/ideaClub/subscription/:id(device token)/cd00ebc1-5197-11e6-a505-27caa3483c4b(:uid)
 PL : nil
 
-
+```
 
