@@ -15,7 +15,8 @@ var uuid = require('node-uuid');
 var geocoder = require('node-geocoder')('google', 'http', null);
 var TimeUuid = require('cassandra-driver').types.TimeUuid;
 var crypto = require('crypto');
-var smtpTransport = require("nodemailer-smtp-transport")
+var smtpTransport = require("nodemailer-smtp-transport");
+var clientTwilio = require('twilio')(config.accountSid, config.authToken);
 
 var client = new cassandra.Client({contactPoints: [config.cassandraDB], keyspace: config.cassandraKeySpace});
 
@@ -26,6 +27,22 @@ auth: {
     pass: config.smptAuth.pass
 }
 });
+
+var sendSms = function(to, message) {
+  clientTwilio.messages.create({
+    body: message,
+    to: to,
+    from: config.sendingNumber
+  }, function(err, data) {
+    if (err) {
+      console.error('Could not notify administrator');
+      console.error(err);
+    } else {
+      console.log('Administrator notified');
+    }
+  });
+};
+
 
 var transporter = nodemailer.createTransport(smtpTransport({
     host : "smtp.gmail.com",
@@ -59,12 +76,12 @@ function addUser(req, res) {
             } else {
                 var verificationCode = randomValueHex(6);
 
-                query = 'insert into users(uid, email, firstname, lastname, password, createdtime, verificationcode, verified, institution) values(?,?,?,?,?,?,?,?,?);';
+                query = 'insert into users(uid, email, firstname, lastname, password, createdtime, verificationcode, verified, institution, phonenumber) values(?,?,?,?,?,?,?,?,?,?);';
 
                 var uuid5 = TimeUuid.fromDate(new Date());
                 req.body.uid = uuid5;
 
-                params = [uuid5.toString(), req.body.email, req.body.firstname, req.body.lastname, req.body.password, req.body.createdTime, verificationCode, "false", req.body.institution];
+                params = [uuid5.toString(), req.body.email, req.body.firstname, req.body.lastname, req.body.password, req.body.createdTime, verificationCode, "false", req.body.institution, req.body.phoneNumber];
                 client.execute(query, params,{ prepare: true}, function(err) {
                   if (err) {
                     res.statusCode = 500;
@@ -72,7 +89,9 @@ function addUser(req, res) {
                     res.send(errorMsg(err, 500));
                     auditlogRes(req, 500, err);
                   } else {
+                    var msg = 'The Idea Club Verification. Please enter the code to verify account : ' + verificationCode;
                     sendEmailLastNyte(req.body.email, verificationCode);
+                    sendSms(req.body.phoneNumber, msg);
                     res.statusCode = 200;
                     res.send(req.body);
                     auditlogRes(req, 200, successMessage("Success Inserting of data", 200));
