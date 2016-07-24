@@ -67,7 +67,8 @@ PL : {
 	"firstname": "Neppoliyan",
 	"lastname": "Thangavelu",
 	"institution": "institution",
-	"createdTime": "datatime"
+	"createdTime": "datatime",
+	"phoneNumber": "2154000000"
 }
 
 API: UpdateUser
