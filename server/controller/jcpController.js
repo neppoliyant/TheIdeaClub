@@ -116,9 +116,8 @@ function deleteJCP(req, res) {
 	var query = '';
     var params = [];
     var articleID = req.body.articleID;
-    query = 'update articles set active where articles=?;';
-    var body = req.body;
-    params = [body.title, body.authorname, body.uid, body.firstname, body.topic, body.keywords, body.presentationtime, body.format, articleID];
+    query = 'update articles set active where articleid=?;';
+    params = [articleID];
 
     client.execute(query, params,{ prepare: true}, function(err, result) {
         if (err) {

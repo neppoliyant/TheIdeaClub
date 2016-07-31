@@ -23,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/rest', require ('./server/service/userService'));
 app.use('/rest', require ('./server/service/notificationService'));
 app.use('/rest', require ('./server/service/JCPService'));
+app.use('/', require('./routes/index'));
 
 
 //Health check
