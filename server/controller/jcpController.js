@@ -44,7 +44,7 @@ function postJCP(req, res) {
             var keywordsSpilt = body.keywords.split(' ');
             var queries = [];
             for (i = 0; i < keywordsSpilt.length; i++) { 
-			    var keyword += keywordsSpilt[i];
+			    var keyword = keywordsSpilt[i];
 			    var obj = {};
 			    obj.query = 'insert into keyword_search (keyword, articleid) values(?,?);';
 
@@ -84,7 +84,7 @@ function putJCP(req, res) {
             var keywordsSpilt = body.keywords.split(' ');
             var queries = [];
             for (i = 0; i < keywordsSpilt.length; i++) { 
-			    var keyword += keywordsSpilt[i];
+			    var keyword = keywordsSpilt[i];
 			    var obj = {};
 			    obj.query = 'insert into keyword_search (keyword, articleid) values(?,?);';
 
