@@ -115,3 +115,62 @@ PL : nil
 
 ```
 
+Functionality : JCP
+----------------------------
+```sh
+API: ADD JCP
+Method: POST
+URL : http:localhost:3000/rest/ideaClub/jcp
+PL : {
+	"title": "title JCP",
+	"authorname": "Author Name",
+	"uid": "cd00ebc1-5197-11e6-a505-27caa3483c4b",
+	"firstname": "Neppoliyan",
+	"topic": "broad topuc",
+	"keywords": "Biology Chemistry",
+	"presentationtime": "date",
+	"format": "OPEN/INVITE"
+}
+
+API: Update JCP
+Method: PUT
+URL : http:localhost:3000/rest/ideaClub/jcp
+PL : {
+	"articleID": "cd00ebc1-5197-11e6-a505-27caa3483c4b",
+	"title": "title JCP",
+	"authorname": "Author Name",
+	"uid": "cd00ebc1-5197-11e6-a505-27caa3483c4b",
+	"firstname": "Neppoliyan",
+	"topic": "broad topuc",
+	"keywords": "Biology Chemistry",
+	"presentationtime": "date",
+	"format": "OPEN/INVITE"
+}
+
+API: Delete JCP
+Method: PUT
+URL : http:localhost:3000/rest/ideaClub/deletejcp
+PL : {
+	"articleID": "cd00ebc1-5197-11e6-a505-27caa3483c4b"
+}
+
+API: Add Participants
+Method: POST
+URL : http:localhost:3000/rest/ideaClub/addparticipants
+PL : {
+	"articleID": "cd00ebc1-5197-11e6-a505-27caa3483c4b",
+	"uid": "cd00ebc1-5197-11e6-a505-27caa3483c4b",
+	"email": "neppoliyant@gmail.com"
+}
+
+API: Delete Participants
+Method: PUT
+URL : http:localhost:3000/rest/ideaClub/deleteparticipants
+PL : {
+	"articleID": "cd00ebc1-5197-11e6-a505-27caa3483c4b",
+	"uid": "cd00ebc1-5197-11e6-a505-27caa3483c4b",
+	"participantUID": "cd00ebc1-5197-11e6-a505-27caa3483c4b"
+}
+
+```
+
