@@ -12,22 +12,32 @@ module.exports = function() {
     app.use(methodOverride('_method'));
     
 	app.put('/ideaClub/jcp', function(req, res) {
+		res.header("Access-Control-Allow-Origin", "*");
+  		res.header("Access-Control-Allow-Headers", "X-Requested-With");
 	    jcp.putJCP(req, res);
 	});
 
 	app.post('/ideaClub/jcp', function(req, res, next) {
+		res.header("Access-Control-Allow-Origin", "*");
+  		res.header("Access-Control-Allow-Headers", "X-Requested-With");
 	    jcp.postJCP(req, res);     
 	});
 
 	app.put('/ideaClub/deletejcp', function(req, res, next) {
+		res.header("Access-Control-Allow-Origin", "*");
+  		res.header("Access-Control-Allow-Headers", "X-Requested-With");
 	    jcp.deleteJCP(req, res);     
 	});
 
-	app.put('/ideaClub/addparticipants', function(req, res, next) {
+	app.post('/ideaClub/addparticipants', function(req, res, next) {
+		res.header("Access-Control-Allow-Origin", "*");
+  		res.header("Access-Control-Allow-Headers", "X-Requested-With");
 	    jcp.addParticipants(req, res);     
 	});
 
 	app.put('/ideaClub/deleteparticipants', function(req, res, next) {
+		res.header("Access-Control-Allow-Origin", "*");
+  		res.header("Access-Control-Allow-Headers", "X-Requested-With");
 	    jcp.deleteParticipants(req, res);     
 	});
 

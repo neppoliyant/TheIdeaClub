@@ -13,14 +13,20 @@ module.exports = function() {
     
 	//Mobile Notification
 	app.get('/ideaClub/subscription/:id/:uid', function(req, res, next) {
+		res.header("Access-Control-Allow-Origin", "*");
+  		res.header("Access-Control-Allow-Headers", "X-Requested-With");
 	    subscription.getSubscription(req, res);
 	});
 
 	app.put('/ideaClub/subscription/:id/:uid', function(req, res, next) {
+		res.header("Access-Control-Allow-Origin", "*");
+  		res.header("Access-Control-Allow-Headers", "X-Requested-With");
 	    subscription.putSubscription(req, res);
 	});
 
 	app.delete('/ideaClub/subscription/:id/:uid', function(req, res, next) {
+		res.header("Access-Control-Allow-Origin", "*");
+  		res.header("Access-Control-Allow-Headers", "X-Requested-With");
 	    subscription.deleteSubscription(req, res);
 	});
 
